@@ -1,2 +1,2 @@
-# conversor_decimal_a_otros
+# conversor decimal C#
 Convertidor de decimal a octal, hexadecimal y binario
