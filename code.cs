@@ -12,6 +12,25 @@ namespace Rextester
 {
     public class Program 
     {
+        static Dictionary<char, int> hexdecval = new Dictionary<char, int>{
+            {'0', 0},
+            {'1', 1},
+            {'2', 2},
+            {'3', 3},
+            {'4', 4},
+            {'5', 5},
+            {'6', 6},
+            {'7', 7},
+            {'8', 8},
+            {'9', 9},
+            {'a', 10},
+            {'b', 11},
+            {'c', 12},
+            {'d', 13},
+            {'e', 14},
+            {'f', 15},
+        };
+
         public static void Main(string[] args) 
         {
             int opcion = 0;
@@ -40,8 +59,10 @@ namespace Rextester
                     DecimalABinario();
                   break;
                 case 4:
+                  HexadecimalADecimal();
                   break;
                 case 5:
+                  OctalADecimal();
                   break;
                 case 6:
                   BinarioADecimal();
@@ -161,6 +182,50 @@ namespace Rextester
           Console.ReadKey();
         }
 
+        public static void HexadecimalADecimal() {
+          string hex = "";
+          int result = 0;
+          
+          Console.Write("Escribe un numero hexadecimal: ");
+          hex = Console.ReadLine();
+          
+          hex = hex.ToLower();
+  
+          for (int i = 0; i < hex.Length; i++)
+          {
+              char valAt = hex[hex.Length - 1 - i];
+              result += hexdecval[valAt] * (int)Math.Pow(16, i);
+          }
+          
+          Console.Write("El numero decimal es: {0}",result);
+            
+          Console.ReadKey();
+        }
+
+        public static void OctalADecimal() {
+          int numero = 0;
+          string oc = "";
+          bool v = true;
+          
+          Console.Write("Escribe un numero octal: ");
+          oc = Console.ReadLine();
+          
+          for (int x = oc.Length - 1, y = 0; x >= 0; x--, y++) {
+            if((int.Parse(oc[x].ToString()) >= 0) && (int.Parse(oc[x].ToString()) <= 7)) {
+              numero += (int)(int.Parse(oc[x].ToString()) * Math.Pow(8,y));
+            } else {
+              Console.Write("El numero no es octal");
+              v = false;
+              break;
+            }
+          }
+          
+          if(v)
+            Console.Write("El numero decimal es: {0}",numero);
+            
+          Console.ReadKey();
+        }
+
         public static void BinarioADecimal() {
           int numero = 0;
           string bin = "";
@@ -175,6 +240,7 @@ namespace Rextester
             } else {
               Console.Write("El numero no es binario");
               v = false;
+              break;
             }
           }
           
