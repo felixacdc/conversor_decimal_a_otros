@@ -23,7 +23,7 @@ namespace Rextester
               Console.Write("4.- Hexadecimal a Decimal\n");
               Console.Write("5.- Octal a Decimal\n");
               Console.Write("6.- Binario a Decimal\n");
-              Console.Write("7.- Salir");
+              Console.Write("7.- Salir\n");
               Console.Write("Ingrese su opcion: ");
               
               opcion = int.Parse(Console.ReadLine());
@@ -37,13 +37,14 @@ namespace Rextester
                   DecimalAOctal();
                   break;
                 case 3:
-                DecimalABinario();
+                    DecimalABinario();
                   break;
                 case 4:
                   break;
                 case 5:
                   break;
                 case 6:
+                  BinarioADecimal();
                   break;
                 case 7:
                   break;
@@ -157,6 +158,29 @@ namespace Rextester
           }
           
           Console.WriteLine("El resultado de la conversion es: " + binario);
+          Console.ReadKey();
+        }
+
+        public static void BinarioADecimal() {
+          int numero = 0;
+          string bin = "";
+          bool v = true;
+          
+          Console.Write("Escribe un numero binario: ");
+          bin = Console.ReadLine();
+          
+          for (int x = bin.Length - 1, y = 0; x >= 0; x--, y++) {
+            if(bin[x] == '0' || bin[x] == '1') {
+              numero += (int)(int.Parse(bin[x].ToString()) * Math.Pow(2,y));
+            } else {
+              Console.Write("El numero no es binario");
+              v = false;
+            }
+          }
+          
+          if(v)
+            Console.Write("El numero decimal es: {0}",numero);
+            
           Console.ReadKey();
         }
     }
